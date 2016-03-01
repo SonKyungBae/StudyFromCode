@@ -35,4 +35,19 @@ public class BoardDAOTest {
 	public void testRead() throws Exception {
 		logger.info(dao.read(2).toString());
 	}
+	
+	@Test
+	public void testUpdate() throws Exception {
+		BoardVO board = new BoardVO();
+		
+		board.setBno(1);
+		board.setTitle("수정된 글입니다.");
+		board.setContent("수정된 내용입니다.");
+		dao.update(board);
+	}
+	
+	@Test
+	public void testDelete() throws Exception {
+		dao.delete(1);
+	}
 }
