@@ -51,4 +51,41 @@ public class ReplyController {
 		
 		return entity;
 	}
+	
+	@RequestMapping(value = "/{rno}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	public ResponseEntity<String> update(@PathVariable("rno") Integer rno, @RequestBody ReplyVO vo) {
+		ResponseEntity<String> entity = null;
+		
+		try {
+			vo.setRno(rno);;
+			service.modifyReply(vo);
+			
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.BAD_GATEWAY);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.OK);
+		}
+		
+		return entity;
+	}
+	
+	@RequestMapping(value = "/{rno}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable("rno") Integer rno) {
+		ResponseEntity<String> entity = null;
+		
+		try {
+			service.removeReply(rno);
+			
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
 }
