@@ -30,13 +30,28 @@
 	
 	<select id="listPage" resultType="ReplyVO">
 		select
+		*
+		from
+		tbl_reply
+		where
+		bno = #{bno}
+		order by rno desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(bno) from tbl_reply where bno = #{bno}
+	</select>
+	
+	<select id="listPage" resultType="ReplyVO">
+		select
 			*
 		from
 			tbl_reply
 		where
 			bno = #{bno}
 		order by rno desc
-		limit #{cri.pageStart}, #{cri.perPageNum}	
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<select id="count" resultType="int">

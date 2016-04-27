@@ -1,6 +1,8 @@
 package org.zerock.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -43,7 +45,12 @@ public class ReplyDAOImpl implements ReplyDAO {
 	@Override
 	public List<ReplyVO> listPage(Integer bno, Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace + ".listPage", bno);
+		Map<String, Object> paramMap = new HashMap<>();
+		
+		paramMap.put("bno", bno);
+		paramMap.put("cri", cri);
+		
+		return session.selectList(namespace + ".listPage", paramMap);
 	}
 
 	@Override

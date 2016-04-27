@@ -15,10 +15,12 @@
 				</div>
 				<!-- /.box-header -->
 
-				<form role="form" action="modifyPage" method="post">
+<form role="form" action="modifyPage" method="post">
 
-					<input type='text' name='page' value="${cri.page}"> <input
-						type='hidden' name='perPageNum' value="${cri.perPageNum}">
+	<input type='hidden' name='page' value="${cri.page}"> <input
+		type='hidden' name='perPageNum' value="${cri.perPageNum}">
+	<input type='hidden' name='searchType' value="${cri.searchType}">
+	<input type='hidden' name='keyword' value="${cri.keyword}">
 
 					<div class="box-body">
 
@@ -49,29 +51,26 @@
 					<button type="submit" class="btn btn-warning">CANCEL</button>
 				</div>
 
-				<script>
-					$(document)
-							.ready(
-									function() {
+<script>
+$(document).ready(
+	function() {
 
-										var formObj = $("form[role='form']");
+		var formObj = $("form[role='form']");
 
-										console.log(formObj);
+		console.log(formObj);
 
-										$(".btn-warning")
-												.on(
-														"click",
-														function() {
-															self.location = "/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}";
-														});
+		$(".btn-warning")
+				.on("click",function() {
+					self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+							+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
+				});
 
-										$(".btn-primary").on("click",
-												function() {
-													formObj.submit();
-												});
-
-									});
-				</script>
+		$(".btn-primary").on("click",
+				function() {
+					formObj.submit();
+				});
+	});
+</script>
 
 
 
